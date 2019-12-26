@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    </p>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header">{{sweet.name}}</div>
+      <div class="card-body">
+          <img style="height: 200px; width: 100%; display: block;" src={{sweet.image}} alt="Image de {{sweet.name}}">
+      </div>
+    </div>
+    <h3 text-align = "center"> Liste des ingrédients : </h3>
+      <div class = "ing">
+        <ul>
+        {% for ingredient in  sweet.ingredients %} 
+          <li> {{ingredient.name}} </li>
+        {% endfor %}
+        </ul>
+      </div>
+    
+    <a href="{{path("listIngredients")}}" class ="btn btn-primary">Ingrédients</a>
+    
+{% endblock %}

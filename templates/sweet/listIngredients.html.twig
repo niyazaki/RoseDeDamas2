@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rose de Damas{% endblock %}
+
+{% block body %}
+</p>
+<section class ="ingredients">
+  <div align ="center">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Pâtisserie</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          
+        </tr>
+      </thead>
+      {% for ingredient in ingredients %}
+        <tbody>
+          <tr class="table-info">
+            <td>{{ ingredient.id }}</td>
+            <td>{{ ingredient.name }}</td>
+            <td>{{ ingredient.sweet }}</td>
+            <td>
+            <a href="{{path("editIngredient", {"id" : ingredient.id})}}" class ="btn btn-primary">Modifier </a>
+            </td>
+            <td>
+            <a href="{{path("deleteIngredient", {"id" : ingredient.id})}}" class ="btn btn-danger">supprimer </a>
+            </td>
+          </tr>
+      {% endfor %}
+  </div>
+</section>
+{% endblock %}

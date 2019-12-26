@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formIngredient 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <h1>
+        {% if editMode %}
+            Modifications
+        {% else %}
+            Nouvel ingredient
+        {% endif %}
+    </h1>
+    {{ form_start(formIngredient) }}
+
+    {{ form_row(formIngredient.name, {'attr': {'placeholder' : "Nom de l'ingrédient"}}) }}
+    {{  form_row(formIngredient.sweet)}}
+
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Ajouter le nouvel ingrédient
+        {% endif %}
+    </button>
+    
+    {{ form_end(formIngredient) }}
+{% endblock %}

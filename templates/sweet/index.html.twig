@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rose de Damas{% endblock %}
+
+{% block body %}
+</p>
+<section class ="sweets">
+  <div align ="center">
+
+    {% for sweet in sweets %}
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header">
+        {{sweet.name}}
+      </div>
+      <div class="card-body">
+          <img style="height: 200px; width: 100%; display: block;" src={{sweet.image}} alt="Image de {{sweet.name}}">
+        <p class="card-text">
+          <div class = "ing">
+             {% for ingredient in  sweet.ingredients %} 
+                 {{ingredient.name}} &nbsp
+             {% endfor %}
+           </div>
+        </p>
+        <a href="{{path("sweetDetails", {"id" : sweet.id})}}" class ="btn btn-primary">Ingrédients</a>
+        &nbsp &nbsp &nbsp
+        <a href="{{path("deleteSweet", {"id" : sweet.id})}}" class ="btn btn-danger">X</a>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+{% endblock %}
