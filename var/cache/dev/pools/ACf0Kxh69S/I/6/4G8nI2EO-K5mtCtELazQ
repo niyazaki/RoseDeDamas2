@@ -1,0 +1,3 @@
+<?php //route_name_834f3ac8f7c7cde6195592d36ae09bff
+
+return [PHP_INT_MAX, 'api_sweets_get_item'];

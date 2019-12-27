@@ -16,12 +16,14 @@
           <img style="height: 200px; width: 100%; display: block;" src={{sweet.image}} alt="Image de {{sweet.name}}">
         <p class="card-text">
           <div class = "ing">
-             {% for ingredient in  sweet.ingredients %} 
+             {% for ingredient in  sweet.ingredients %}
+              {% if loop.index < 4 %}
                  {{ingredient.name}} &nbsp
+              {% endif %}
              {% endfor %}
            </div>
         </p>
-        <a href="{{path("sweetDetails", {"id" : sweet.id})}}" class ="btn btn-primary">Ingrédients</a>
+        <a href="{{path("sweetDetails", {"id" : sweet.id})}}" class ="btn btn-primary">Tous les ingrédients</a>
         &nbsp &nbsp &nbsp
         <a href="{{path("deleteSweet", {"id" : sweet.id})}}" class ="btn btn-danger">X</a>
       </div>

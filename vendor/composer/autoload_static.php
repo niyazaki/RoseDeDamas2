@@ -111,8 +111,14 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'ProxyManager\\' => 13,
             'PhpParser\\' => 10,
             'PackageVersions\\' => 16,
+        ),
+        'N' => 
+        array (
+            'Nelmio\\CorsBundle\\' => 18,
+            'Negotiation\\' => 12,
         ),
         'M' => 
         array (
@@ -120,6 +126,7 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         ),
         'F' => 
         array (
+            'Fig\\Link\\' => 9,
             'Faker\\' => 6,
         ),
         'E' => 
@@ -149,6 +156,7 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         array (
             'App\\Tests\\' => 10,
             'App\\' => 4,
+            'ApiPlatform\\Core\\' => 17,
         ),
     );
 
@@ -455,6 +463,10 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
+        'ProxyManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ocramius/proxy-manager/src/ProxyManager',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -463,9 +475,21 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         array (
             0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
         ),
+        'Nelmio\\CorsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nelmio/cors-bundle',
+        ),
+        'Negotiation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/willdurand/negotiation/src/Negotiation',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Fig\\Link\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fig/link-util/src',
         ),
         'Faker\\' => 
         array (
@@ -550,15 +574,9 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'P' => 
+        'ApiPlatform\\Core\\' => 
         array (
-            'ProxyManager\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/ocramius/proxy-manager/src',
-            ),
+            0 => __DIR__ . '/..' . '/api-platform/core/src',
         ),
     );
 
@@ -577,7 +595,6 @@ class ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit8b2de5c2ac5606bd19ec66beded27f59::$classMap;
 
         }, null, ClassLoader::class);

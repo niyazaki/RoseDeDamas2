@@ -21,6 +21,8 @@ final class Versions
      * @internal
      */
     public const VERSIONS          = array (
+  'api-platform/api-pack' => 'v1.2.1@41364f8763475d7709c43f790aa77a4157d038e2',
+  'api-platform/core' => 'v2.5.3@2d402688c485457adbc771e347e6498e70c6f232',
   'doctrine/annotations' => 'v1.8.0@904dca4eb10715b92569fbcd79e201d5c349b6bc',
   'doctrine/cache' => '1.10.0@382e7f4db9a12dc6c19431743a2b096041bcdd62',
   'doctrine/collections' => '1.6.4@6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7',
@@ -37,10 +39,12 @@ final class Versions
   'doctrine/persistence' => '1.3.3@99b196bbd4715a94fa100fac664a351ffa46d6a5',
   'doctrine/reflection' => 'v1.0.0@02538d3f95e88eb397a5f86274deb2c6175c2ab6',
   'egulias/email-validator' => '2.1.12@a6255605af39f2db7f5cb62e672bd8a7bad8d208',
+  'fig/link-util' => '1.1.0@47f55860678a9e202206047bc02767556d298106',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
   'monolog/monolog' => '2.0.2@c861fcba2ca29404dc9e617eedd9eff4616986b8',
+  'nelmio/cors-bundle' => '2.0.1@9683e6d30d000ef998919261329d825de7c53499',
   'ocramius/package-versions' => '1.5.1@1d32342b8c1eb27353c8887c366147b4c2da673c',
-  'ocramius/proxy-manager' => '2.2.3@4d154742e31c35137d5374c998e8f86b54db2e2f',
+  'ocramius/proxy-manager' => '2.5.1@b7bac968eef945322d1e28d7e833b6a549a6da27',
   'phpdocumentor/reflection-common' => '2.0.0@63a995caa1ca9e5590304cd845c15ad6d482a62a',
   'phpdocumentor/reflection-docblock' => '4.3.3@2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62',
   'phpdocumentor/type-resolver' => '1.0.1@2e32a6d48972b2c1976ed5d8967145b6cec4a4a9',
@@ -113,6 +117,7 @@ final class Versions
   'twig/extra-bundle' => 'v3.0.0@c56821429490e351003a09b7ed0c917feec2355f',
   'twig/twig' => 'v3.0.0@9b58bb8ac7a41d72fbb5a7dc643e07923e5ccc26',
   'webmozart/assert' => '1.6.0@573381c0a64f155a0d9a23f4b0c797194805b925',
+  'willdurand/negotiation' => 'v2.3.1@03436ededa67c6e83b9b12defac15384cb399dc9',
   'zendframework/zend-code' => '3.4.1@268040548f92c2bfcba164421c1add2ba43abaaa',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
   'doctrine/data-fixtures' => '1.4.0@608a35a3b5bcc4214d116603095f8b0c51091592',
@@ -130,14 +135,14 @@ final class Versions
   'symfony/profiler-pack' => 'v1.0.4@99c4370632c2a59bb0444852f92140074ef02209',
   'symfony/test-pack' => 'v1.0.6@ff87e800a67d06c423389f77b8209bc9dc469def',
   'symfony/web-profiler-bundle' => 'v5.0.2@6cc40446060e174a690e0f6da90731133b29b664',
-  'paragonie/random_compat' => '2.*@',
-  'symfony/polyfill-ctype' => '*@',
-  'symfony/polyfill-iconv' => '*@',
-  'symfony/polyfill-php72' => '*@',
-  'symfony/polyfill-php71' => '*@',
-  'symfony/polyfill-php70' => '*@',
-  'symfony/polyfill-php56' => '*@',
-  '__root__' => 'No version set (parsed as 1.0.0)@',
+  'paragonie/random_compat' => '2.*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-ctype' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-iconv' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-php72' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-php71' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-php70' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  'symfony/polyfill-php56' => '*@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
+  '__root__' => 'dev-master@3abcab1aef42ecc19e43c2076f8f76cf53733bf9',
 );
 
     private function __construct()

@@ -1,0 +1,3 @@
+<?php //route_name_a22e193fd20c8fd18ff784fd6e391413
+
+return [PHP_INT_MAX, 'api_ingredients_get_collection'];

@@ -8,7 +8,7 @@
           <img style="height: 200px; width: 100%; display: block;" src={{sweet.image}} alt="Image de {{sweet.name}}">
       </div>
     </div>
-    <h3 text-align = "center"> Liste des ingrédients : </h3>
+    <h4 text-align = "center"> Liste des ingrédients : </h4>
       <div class = "ing">
         <ul>
         {% for ingredient in  sweet.ingredients %} 
@@ -16,7 +16,9 @@
         {% endfor %}
         </ul>
       </div>
-    
-    <a href="{{path("listIngredients")}}" class ="btn btn-primary">Ingrédients</a>
-    
+    <h4 text-align ="center"> Options : </h4>
+    <a href="{{path("edit", {"id" : sweet.id})}}" class ="btn btn-warning">Modifier la pâtisserie</a>
+    </p>
+    </p>
+    <a href="{{path("listIngredients")}}" class ="btn btn-primary">Liste des ingrédients</a>
 {% endblock %}
