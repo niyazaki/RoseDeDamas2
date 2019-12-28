@@ -15,7 +15,6 @@ class IngredientType extends AbstractType
     {
         $builder
             ->add('name')
-
             ->add('sweet');
     }
 

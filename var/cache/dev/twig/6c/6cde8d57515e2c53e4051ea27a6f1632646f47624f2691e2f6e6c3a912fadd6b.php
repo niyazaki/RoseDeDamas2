@@ -56,7 +56,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
         ";
         // line 7
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 10
+        // line 11
         echo "    </head>
     <body>
             <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
@@ -70,21 +70,21 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 22
+        // line 23
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("listIngredients");
         echo "\">Liste des ingrédients</a>
                         </li>
                         
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 26
+        // line 27
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("newSweet");
         echo "\">Ajouter une pâtisserie</a>
                         </li>
         
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 30
+        // line 31
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("newIngredient");
         echo "\">Ajouter un ingrédient</a>
                         </li>
@@ -95,14 +95,14 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
         <div class=\"container\">
             ";
-        // line 38
-        $this->displayBlock('body', $context, $blocks);
         // line 39
+        $this->displayBlock('body', $context, $blocks);
+        // line 40
         echo "        </div>
         ";
-        // line 40
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 41
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 42
         echo "    </body>
 </html>
 ";
@@ -145,6 +145,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
         // line 8
         echo "            <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/litera/bootstrap.min.css\">
+            <link href=\"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" rel=\"stylesheet\" integrity=\"sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN\" crossorigin=\"anonymous\">
         ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -154,7 +155,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
     }
 
-    // line 38
+    // line 39
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -172,7 +173,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
     }
 
-    // line 40
+    // line 41
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -202,7 +203,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
 
     public function getDebugInfo()
     {
-        return array (  176 => 40,  158 => 38,  147 => 8,  137 => 7,  118 => 5,  106 => 41,  104 => 40,  101 => 39,  99 => 38,  88 => 30,  81 => 26,  74 => 22,  60 => 10,  58 => 7,  53 => 5,  47 => 1,);
+        return array (  177 => 41,  159 => 39,  147 => 8,  137 => 7,  118 => 5,  106 => 42,  104 => 41,  101 => 40,  99 => 39,  88 => 31,  81 => 27,  74 => 23,  60 => 11,  58 => 7,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -215,6 +216,7 @@ class __TwigTemplate_287edd2e8ed6f49a2aca28208fcb151e2a1a9175cdd7abfb25abdbca80b
         
         {% block stylesheets %}
             <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/litera/bootstrap.min.css\">
+            <link href=\"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" rel=\"stylesheet\" integrity=\"sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN\" crossorigin=\"anonymous\">
         {% endblock %}
     </head>
     <body>

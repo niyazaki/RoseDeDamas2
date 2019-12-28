@@ -158,7 +158,7 @@ class __TwigTemplate_5ef1ab44956cbb114489e2902956c5c87a0552846fd4f8bb0b985245e07
         <a href=\"";
             // line 26
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sweetDetails", ["id" => twig_get_attribute($this->env, $this->source, $context["sweet"], "id", [], "any", false, false, false, 26)]), "html", null, true);
-            echo "\" class =\"btn btn-primary\">Tous les ingrédients</a>
+            echo "\" class =\"btn btn-primary\">Ingrédients</a>
         &nbsp &nbsp &nbsp
         <a href=\"";
             // line 28
@@ -226,7 +226,7 @@ class __TwigTemplate_5ef1ab44956cbb114489e2902956c5c87a0552846fd4f8bb0b985245e07
              {% endfor %}
            </div>
         </p>
-        <a href=\"{{path(\"sweetDetails\", {\"id\" : sweet.id})}}\" class =\"btn btn-primary\">Tous les ingrédients</a>
+        <a href=\"{{path(\"sweetDetails\", {\"id\" : sweet.id})}}\" class =\"btn btn-primary\">Ingrédients</a>
         &nbsp &nbsp &nbsp
         <a href=\"{{path(\"deleteSweet\", {\"id\" : sweet.id})}}\" class =\"btn btn-danger\">X</a>
       </div>
