@@ -6,7 +6,7 @@
 use Symfony\Component\DependencyInjection\Dumper\Preloader;
 
 require dirname(__DIR__, 3).'\\vendor/autoload.php';
-require __DIR__.'/ContainerUZy8a2x/App_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerOZx3KKM/App_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'App\Kernel';
@@ -79,14 +79,9 @@ $classes[] = 'Symfony\Component\Serializer\Serializer';
 $classes[] = 'ApiPlatform\Core\Swagger\Serializer\ApiGatewayNormalizer';
 $classes[] = 'ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer';
 $classes[] = 'ApiPlatform\Core\Bridge\Symfony\Routing\RouterOperationPathResolver';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\ConstraintViolationListNormalizer';
 $classes[] = 'ApiPlatform\Core\Problem\Serializer\ConstraintViolationListNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\DocumentationNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\EntrypointNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\ErrorNormalizer';
 $classes[] = 'ApiPlatform\Core\Problem\Serializer\ErrorNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\ProblemNormalizer';
-$classes[] = 'ApiPlatform\Core\JsonLd\Serializer\ItemNormalizer';
 $classes[] = 'ApiPlatform\Core\Serializer\ItemNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DateTimeNormalizer';
@@ -94,11 +89,7 @@ $classes[] = 'Symfony\Component\Serializer\Normalizer\ConstraintViolationListNor
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DateTimeZoneNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DateIntervalNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DataUriNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\CollectionFiltersNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\PartialCollectionViewNormalizer';
-$classes[] = 'ApiPlatform\Core\Hydra\Serializer\CollectionNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\ArrayDenormalizer';
-$classes[] = 'ApiPlatform\Core\JsonLd\Serializer\ObjectNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\ObjectNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Mapping\ClassDiscriminatorFromClassMetadata';
 $classes[] = 'Symfony\Component\Serializer\Encoder\XmlEncoder';
@@ -250,11 +241,8 @@ $classes[] = 'ApiPlatform\Core\Bridge\Symfony\PropertyInfo\Metadata\Property\Pro
 $classes[] = 'ApiPlatform\Core\Metadata\Extractor\XmlExtractor';
 $classes[] = 'ApiPlatform\Core\Metadata\Extractor\YamlExtractor';
 $classes[] = 'ApiPlatform\Core\JsonSchema\TypeFactory';
-$classes[] = 'ApiPlatform\Core\Bridge\Symfony\Bundle\EventListener\SwaggerUiListener';
-$classes[] = 'ApiPlatform\Core\JsonLd\ContextBuilder';
-$classes[] = 'ApiPlatform\Core\Hydra\EventListener\AddLinkHeaderListener';
-$classes[] = 'ApiPlatform\Core\Hydra\JsonSchema\SchemaFactory';
 $classes[] = 'ApiPlatform\Core\JsonSchema\SchemaFactory';
+$classes[] = 'ApiPlatform\Core\Bridge\Symfony\Bundle\EventListener\SwaggerUiListener';
 $classes[] = 'ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener';
 $classes[] = 'ApiPlatform\Core\Filter\QueryParameterValidateListener';
 $classes[] = 'ApiPlatform\Core\Bridge\Symfony\Bundle\DataProvider\TraceableChainCollectionDataProvider';

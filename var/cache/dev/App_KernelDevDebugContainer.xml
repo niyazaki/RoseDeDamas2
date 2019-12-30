@@ -277,14 +277,8 @@
       <parameter key="Doctrine\ORM\OptimisticLockException">409</parameter>
     </parameter>
     <parameter key="api_platform.formats" type="collection">
-      <parameter key="jsonld" type="collection">
-        <parameter>application/ld+json</parameter>
-      </parameter>
       <parameter key="json" type="collection">
         <parameter>application/json</parameter>
-      </parameter>
-      <parameter key="html" type="collection">
-        <parameter>text/html</parameter>
       </parameter>
     </parameter>
     <parameter key="api_platform.patch_formats" type="collection">
@@ -2473,14 +2467,6 @@
       <call method="addListener">
         <argument>kernel.response</argument>
         <argument type="collection">
-          <argument type="service" id="api_platform.hydra.listener.response.add_link_header"/>
-          <argument>onKernelResponse</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>kernel.response</argument>
-        <argument type="collection">
           <argument type="service" id="api_platform.http_cache.listener.response.configure"/>
           <argument>onKernelResponse</argument>
         </argument>
@@ -3126,15 +3112,10 @@
     <service id="serializer" class="Symfony\Component\Serializer\Serializer" public="true">
       <argument type="collection">
         <argument type="service" id="api_platform.swagger.normalizer.api_gateway"/>
-        <argument type="service" id="api_platform.hydra.normalizer.constraint_violation_list"/>
         <argument type="service" id="api_platform.problem.normalizer.constraint_violation_list"/>
         <argument type="service" id="api_platform.swagger.normalizer.api_gateway"/>
-        <argument type="service" id="api_platform.hydra.normalizer.documentation"/>
-        <argument type="service" id="api_platform.hydra.normalizer.entrypoint"/>
-        <argument type="service" id="api_platform.hydra.normalizer.error"/>
         <argument type="service" id="api_platform.problem.normalizer.error"/>
         <argument type="service" id="serializer.normalizer.problem"/>
-        <argument type="service" id="api_platform.jsonld.normalizer.item"/>
         <argument type="service" id="api_platform.serializer.normalizer.item"/>
         <argument type="service" id="serializer.normalizer.json_serializable"/>
         <argument type="service" id="serializer.normalizer.datetime"/>
@@ -3142,9 +3123,7 @@
         <argument type="service" id="serializer.normalizer.datetimezone"/>
         <argument type="service" id="serializer.normalizer.dateinterval"/>
         <argument type="service" id="serializer.normalizer.data_uri"/>
-        <argument type="service" id="api_platform.hydra.normalizer.collection_filters"/>
         <argument type="service" id="serializer.denormalizer.array"/>
-        <argument type="service" id="api_platform.jsonld.normalizer.object"/>
         <argument type="service" id="serializer.normalizer.object"/>
       </argument>
       <argument type="collection">
@@ -3152,7 +3131,6 @@
         <argument type="service" id="serializer.encoder.json"/>
         <argument type="service" id="serializer.encoder.yaml"/>
         <argument type="service" id="serializer.encoder.csv"/>
-        <argument type="service" id="api_platform.jsonld.encoder"/>
         <argument type="service" id="api_platform.problem.encoder"/>
       </argument>
     </service>
@@ -5329,12 +5307,19 @@
     </service>
     <service id="api_platform.json_schema.type_factory" class="ApiPlatform\Core\JsonSchema\TypeFactory" public="false">
       <call method="setSchemaFactory">
-        <argument type="service" id="api_platform.hydra.json_schema.schema_factory"/>
+        <argument type="service" id="api_platform.json_schema.schema_factory"/>
       </call>
+    </service>
+    <service id="api_platform.json_schema.schema_factory" class="ApiPlatform\Core\JsonSchema\SchemaFactory" public="false">
+      <argument type="service" id="api_platform.json_schema.type_factory"/>
+      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
+      <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
+      <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
+      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
     </service>
     <service id="api_platform.json_schema.json_schema_generate_command" class="ApiPlatform\Core\JsonSchema\Command\JsonSchemaGenerateCommand" public="false">
       <tag name="console.command"/>
-      <argument type="service" id="api_platform.hydra.json_schema.schema_factory"/>
+      <argument type="service" id="api_platform.json_schema.schema_factory"/>
       <argument>%api_platform.formats%</argument>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway" class="ApiPlatform\Core\Swagger\Serializer\ApiGatewayNormalizer" public="false">
@@ -5380,93 +5365,6 @@
       <argument>false</argument>
       <argument>false</argument>
       <argument>%api_platform.swagger.versions%</argument>
-    </service>
-    <service id="api_platform.jsonld.context_builder" class="ApiPlatform\Core\JsonLd\ContextBuilder" public="false">
-      <argument type="service" id="api_platform.metadata.resource.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.router"/>
-    </service>
-    <service id="api_platform.jsonld.normalizer.item" class="ApiPlatform\Core\JsonLd\Serializer\ItemNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-890"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.iri_converter"/>
-      <argument type="service" id="api_platform.resource_class_resolver"/>
-      <argument type="service" id="api_platform.jsonld.context_builder"/>
-      <argument type="service" id="property_accessor"/>
-      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
-      <argument type="service" id="serializer.mapping.class_metadata_factory" on-invalid="ignore"/>
-      <argument type="collection"/>
-      <argument type="tagged_iterator" tag="api_platform.data_transformer"/>
-      <argument>false</argument>
-    </service>
-    <service id="api_platform.jsonld.normalizer.object" class="ApiPlatform\Core\JsonLd\Serializer\ObjectNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-995"/>
-      <argument type="service" id="serializer.normalizer.object"/>
-      <argument type="service" id="api_platform.iri_converter"/>
-      <argument type="service" id="api_platform.jsonld.context_builder"/>
-    </service>
-    <service id="api_platform.jsonld.encoder" class="ApiPlatform\Core\Serializer\JsonEncoder" public="false">
-      <tag name="serializer.encoder"/>
-      <argument>jsonld</argument>
-    </service>
-    <service id="api_platform.jsonld.action.context" class="ApiPlatform\Core\JsonLd\Action\ContextAction" public="true">
-      <argument type="service" id="api_platform.jsonld.context_builder"/>
-      <argument type="service" id="api_platform.metadata.resource.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-    </service>
-    <service id="api_platform.hydra.normalizer.documentation" class="ApiPlatform\Core\Hydra\Serializer\DocumentationNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-800"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.resource_class_resolver"/>
-      <argument>null</argument>
-      <argument type="service" id="api_platform.router"/>
-      <argument type="service" id="api_platform.subresource_operation_factory.cached"/>
-      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
-    </service>
-    <service id="api_platform.hydra.listener.response.add_link_header" class="ApiPlatform\Core\Hydra\EventListener\AddLinkHeaderListener">
-      <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse"/>
-      <tag name="container.hot_path"/>
-      <argument type="service" id="api_platform.router"/>
-    </service>
-    <service id="api_platform.hydra.normalizer.constraint_violation_list" class="ApiPlatform\Core\Hydra\Serializer\ConstraintViolationListNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-780"/>
-      <argument type="service" id="api_platform.router"/>
-      <argument type="collection"/>
-      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
-    </service>
-    <service id="api_platform.hydra.normalizer.entrypoint" class="ApiPlatform\Core\Hydra\Serializer\EntrypointNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-800"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.iri_converter"/>
-      <argument type="service" id="api_platform.router"/>
-    </service>
-    <service id="api_platform.hydra.normalizer.error" class="ApiPlatform\Core\Hydra\Serializer\ErrorNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-800"/>
-      <argument type="service" id="api_platform.router"/>
-      <argument>true</argument>
-    </service>
-    <service id="api_platform.hydra.normalizer.partial_collection_view" class="ApiPlatform\Core\Hydra\Serializer\PartialCollectionViewNormalizer" public="false">
-      <argument type="service" id="api_platform.hydra.normalizer.partial_collection_view.inner"/>
-      <argument>page</argument>
-      <argument>pagination</argument>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="property_accessor"/>
-    </service>
-    <service id="api_platform.hydra.normalizer.collection_filters" class="ApiPlatform\Core\Hydra\Serializer\CollectionFiltersNormalizer" public="false">
-      <tag name="serializer.normalizer" priority="-985"/>
-      <argument type="service" id="api_platform.hydra.normalizer.partial_collection_view"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.resource_class_resolver"/>
-      <argument type="service" id="api_platform.filter_locator"/>
-    </service>
-    <service id="api_platform.hydra.json_schema.schema_factory" class="ApiPlatform\Core\Hydra\JsonSchema\SchemaFactory">
-      <argument type="service" id="api_platform.hydra.json_schema.schema_factory.inner"/>
     </service>
     <service id="api_platform.problem.encoder" class="ApiPlatform\Core\Serializer\JsonEncoder" public="false">
       <tag name="serializer.encoder"/>
@@ -6363,18 +6261,6 @@
       <argument type="service" id="property_accessor"/>
       <argument type="service" id="api_platform.resource_class_resolver"/>
     </service>
-    <service id="api_platform.hydra.normalizer.partial_collection_view.inner" class="ApiPlatform\Core\Hydra\Serializer\CollectionNormalizer" public="false">
-      <argument type="service" id="api_platform.jsonld.context_builder"/>
-      <argument type="service" id="api_platform.resource_class_resolver"/>
-      <argument type="service" id="api_platform.iri_converter"/>
-    </service>
-    <service id="api_platform.hydra.json_schema.schema_factory.inner" class="ApiPlatform\Core\JsonSchema\SchemaFactory" public="false">
-      <argument type="service" id="api_platform.json_schema.type_factory"/>
-      <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
-      <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
-      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
-    </service>
     <service id="debug.api_platform.collection_data_provider.inner" class="ApiPlatform\Core\DataProvider\ChainCollectionDataProvider" public="false">
       <argument type="tagged_iterator" tag="api_platform.collection_data_provider"/>
     </service>
@@ -6413,7 +6299,7 @@
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
       <argument type="service" id="api_platform.metadata.property.name_collection_factory.cached"/>
       <argument type="service" id="api_platform.metadata.property.metadata_factory.cached"/>
-      <argument type="service" id="api_platform.hydra.json_schema.schema_factory"/>
+      <argument type="service" id="api_platform.json_schema.schema_factory"/>
       <argument type="service" id="api_platform.json_schema.type_factory"/>
       <argument type="service" id="api_platform.operation_path_resolver.router"/>
       <argument>null</argument>
@@ -6892,7 +6778,7 @@
     <service id="api_platform.metadata.resource.metadata_factory" alias="api_platform.metadata.resource.metadata_factory.cached"/>
     <service id="api_platform.metadata.property.metadata_factory" alias="api_platform.metadata.property.metadata_factory.cached"/>
     <service id="ApiPlatform\Core\JsonSchema\TypeFactoryInterface" alias="api_platform.json_schema.type_factory" public="false"/>
-    <service id="ApiPlatform\Core\JsonSchema\SchemaFactoryInterface" alias="api_platform.hydra.json_schema.schema_factory" public="false"/>
+    <service id="ApiPlatform\Core\JsonSchema\SchemaFactoryInterface" alias="api_platform.json_schema.schema_factory" public="false"/>
     <service id="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter" alias="api_platform.doctrine.orm.search_filter"/>
     <service id="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter" alias="api_platform.doctrine.orm.order_filter"/>
     <service id="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter" alias="api_platform.doctrine.orm.range_filter"/>
@@ -6959,9 +6845,6 @@
     <service id="api_platform.metadata.resource.name_collection_factory.annotation.inner" alias="api_platform.metadata.resource.name_collection_factory.xml" public="false"/>
     <service id="api_platform.metadata.resource.name_collection_factory.yaml.inner" alias="api_platform.metadata.resource.name_collection_factory.annotation" public="false"/>
     <service id="api_platform.metadata.property.name_collection_factory.yaml.inner" alias="api_platform.metadata.property.name_collection_factory.xml" public="false"/>
-    <service id="api_platform.hydra.normalizer.collection" alias="api_platform.hydra.normalizer.collection_filters" public="false"/>
-    <service id="api_platform.hydra.normalizer.collection_filters.inner" alias="api_platform.hydra.normalizer.partial_collection_view" public="false"/>
-    <service id="api_platform.json_schema.schema_factory" alias="api_platform.hydra.json_schema.schema_factory" public="false"/>
     <service id="api_platform.collection_data_provider" alias="debug.api_platform.collection_data_provider"/>
     <service id="api_platform.item_data_provider" alias="debug.api_platform.item_data_provider"/>
     <service id="api_platform.subresource_data_provider" alias="debug.api_platform.subresource_data_provider"/>
